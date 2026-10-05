@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+
 public class WeatherService {
     private final WeatherDataProvider provider;
     private final List<Location> locations;

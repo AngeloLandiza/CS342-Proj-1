@@ -14,8 +14,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class WeatherCLITest {
 
+class WeatherCLITest {
     private static final List<Location> LOCATIONS = List.of(
             new Location("Chicago", 41.85, -87.65),
             new Location("New York", 40.71, -74.01));

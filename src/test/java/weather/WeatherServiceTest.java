@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import weather.model.Location;
 import weather.model.WeatherComparison;
 import weather.model.WeatherData;
-import weather.provider.WeatherDataProvider;
 import weather.provider.WeatherProviderException;
 import weather.service.WeatherService;
 
@@ -13,12 +12,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
 
 class WeatherServiceTest {
-
     private static final Location CHICAGO = new Location("Chicago", 41.85, -87.65);
     private static final Location NEW_YORK = new Location("New York", 40.71, -74.01);
 
@@ -77,10 +73,8 @@ class WeatherServiceTest {
     }
 
     @Test
-    void providerFailureIsPassedToCaller() throws Exception {
-        WeatherDataProvider failingProvider = mock(WeatherDataProvider.class);
-        when(failingProvider.getCurrentWeather(any())).thenThrow(new WeatherProviderException("Service down"));
-        WeatherService failingService = new WeatherService(failingProvider, List.of(CHICAGO));
+    void providerFailureIsPassedToCaller() {
+        WeatherService failingService = new WeatherService(new FailingWeatherDataProvider(), List.of(CHICAGO));
 
         WeatherProviderException error =
                 assertThrows(WeatherProviderException.class, () -> failingService.getCurrentWeather("Chicago"));

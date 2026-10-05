@@ -8,8 +8,8 @@ import weather.service.WeatherService;
 
 import java.util.List;
 
-public class Main {
 
+public class Main {
     public static void main(String[] args) {
         List<Location> locations = List.of(
                 new Location("Chicago", 41.85, -87.65),
